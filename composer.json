@@ -1,5 +1,5 @@
 {
-  "name": "vinelab/neoeloquent",
+  "name": "drashoor/neoeloquent",
   "description": "Laravel wrapper for the Neo4j graph database REST interface",
   "keywords": [
     "laravel",
@@ -17,11 +17,6 @@
   ],
   "require": {
     "php": ">=7.1.3",
-    "illuminate/support": "6.*",
-    "illuminate/database": "6.*",
-    "illuminate/pagination": "6.*",
-    "illuminate/events": "6.*",
-    "illuminate/console": "6.*",
     "heydavid713/neo4jphp": "0.1.*",
     "nesbot/carbon": "~1.0"
   },
