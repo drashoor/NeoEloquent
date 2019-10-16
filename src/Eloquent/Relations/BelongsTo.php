@@ -4,6 +4,13 @@ use Vinelab\NeoEloquent\Eloquent\Edges\EdgeIn;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 class BelongsTo extends OneRelation {
+    
+    /**
+     * The relationship name.
+     *
+     * @var string
+     */
+    protected $relation;
 
     /**
      * The edge direction for this relationship.
