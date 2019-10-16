@@ -1,15 +1,14 @@
 <?php namespace Vinelab\NeoEloquent\Query;
 
+use Carbon\Carbon;
 use Closure;
 use DateTime;
-use Carbon\Carbon;
-use Vinelab\NeoEloquent\Connection;
-use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Eloquent\Collection;
-use Vinelab\NeoEloquent\Query\Grammars\Grammar;
-use Vinelab\NeoEloquent\Query\Processors\Processor;
-use Illuminate\Database\Query\Processors\Processor as IlluminateProcessor;
 use Illuminate\Database\Query\Builder as IlluminateQueryBuilder;
+use Illuminate\Database\Query\Expression;
+use Illuminate\Database\Query\Processors\Processor as IlluminateProcessor;
+use Vinelab\NeoEloquent\Connection;
+use Vinelab\NeoEloquent\Query\Grammars\Grammar;
 
 class Builder extends IlluminateQueryBuilder
 {
@@ -75,8 +74,8 @@ class Builder extends IlluminateQueryBuilder
      * Create a new query builder instance.
      *
      * @param Vinelab\NeoEloquent\Connection $connection
-     * @param  \Illuminate\Database\Query\Grammars\Grammar $grammar
-     * @param  \Illuminate\Database\Query\Processors\Processor $processor
+     * @param \Illuminate\Database\Query\Grammars\Grammar $grammar
+     * @param \Illuminate\Database\Query\Processors\Processor $processor
      * @return void
      */
     public function __construct(Connection $connection, Grammar $grammar, IlluminateProcessor $processor)
@@ -93,7 +92,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Set the node's label which the query is targeting.
      *
-     * @param  string $label
+     * @param string $label
      * @return \Vinelab\NeoEloquent\Query\Builder|static
      */
     public function from($label)
@@ -106,8 +105,8 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Insert a new record and get the value of the primary key.
      *
-     * @param  array $values
-     * @param  string $sequence
+     * @param array $values
+     * @param string $sequence
      * @return int
      */
     public function insertGetId(array $values, $sequence = null)
@@ -137,7 +136,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Update a record in the database.
      *
-     * @param  array $values
+     * @param array $values
      * @return int
      */
     public function update(array $values)
@@ -156,7 +155,7 @@ class Builder extends IlluminateQueryBuilder
      *  in the CypherGrammar so that we differentiate them from
      *  query bindings avoiding clashing values.
      *
-     * @param  array $values
+     * @param array $values
      * @return array
      */
     protected function getBindingsMergedWithValues(array $values)
@@ -219,7 +218,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Get the count of the total records for the paginator.
      *
-     * @param  array $columns
+     * @param array $columns
      * @return int
      */
     public function getCountForPagination($columns = ['*'])
@@ -252,10 +251,10 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a basic where clause to the query.
      *
-     * @param  string $column
-     * @param  string $operator
-     * @param  mixed $value
-     * @param  string $boolean
+     * @param string $column
+     * @param string $operator
+     * @param mixed $value
+     * @param string $boolean
      * @return \Illuminate\Database\Query\Builder|static
      *
      * @throws \InvalidArgumentException
@@ -352,7 +351,7 @@ class Builder extends IlluminateQueryBuilder
      * Increment the value of an existing column on a where clause.
      * Used to allow querying on the same attribute with different values.
      *
-     * @param  string $column
+     * @param string $column
      * @return string
      */
     protected function prepareBindingColumn($column)
@@ -364,7 +363,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Get the number of occurrences of a column in where clauses.
      *
-     * @param  string $column
+     * @param string $column
      * @return int
      */
     protected function columnCountForWhereClause($column)
@@ -378,10 +377,10 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a "where in" clause to the query.
      *
-     * @param  string $column
-     * @param  mixed $values
-     * @param  string $boolean
-     * @param  bool $not
+     * @param string $column
+     * @param mixed $values
+     * @param string $boolean
+     * @param bool $not
      * @return \Illuminate\Database\Query\Builder|static
      */
     public function whereIn($column, $values, $boolean = 'and', $not = false)
@@ -411,10 +410,10 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a where between statement to the query.
      *
-     * @param  string $column
-     * @param  array $values
-     * @param  string $boolean
-     * @param  bool $not
+     * @param string $column
+     * @param array $values
+     * @param string $boolean
+     * @param bool $not
      * @return \Illuminate\Database\Query\Builder|static
      */
     public function whereBetween($column, array $values, $boolean = 'and', $not = false)
@@ -435,9 +434,9 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a "where null" clause to the query.
      *
-     * @param  string $column
-     * @param  string $boolean
-     * @param  bool $not
+     * @param string $column
+     * @param string $boolean
+     * @param bool $not
      * @return \Illuminate\Database\Query\Builder|static
      */
     public function whereNull($column, $boolean = 'and', $not = false)
@@ -456,10 +455,10 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a WHERE statement with carried identifier to the query.
      *
-     * @param  string $column
-     * @param  string $operator
-     * @param  string $value
-     * @param  string $boolean
+     * @param string $column
+     * @param string $operator
+     * @param string $value
+     * @param string $boolean
      * @return \Illuminate\Database\Query\Builder|static
      */
     public function whereCarried($column, $operator = null, $value = null, $boolean = 'and')
@@ -474,7 +473,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a WITH clause to the query.
      *
-     * @param  array $parts
+     * @param array $parts
      * @return \Vinelab\NeoEloquent\Query\Builder|static
      */
     public function with(array $parts)
@@ -489,7 +488,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Insert a new record into the database.
      *
-     * @param  array $values
+     * @param array $values
      * @return bool
      */
     public function insert(array $values)
@@ -534,8 +533,8 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Create a new node with related nodes with one database hit.
      *
-     * @param  array $model
-     * @param  array $related
+     * @param array $model
+     * @param array $related
      * @return \Vinelab\NeoEloquent\Eloquent\Model
      */
     public function createWith(array $model, array $related)
@@ -549,7 +548,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Execute the query as a fresh "select" statement.
      *
-     * @param  array $columns
+     * @param array $columns
      * @return array|static[]
      */
     public function getFresh($columns = array('*'))
@@ -582,13 +581,13 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a relationship MATCH clause to the query.
      *
-     * @param  \Vinelab\NeoEloquent\Eloquent\Model $parent The parent model of the relationship
-     * @param  \Vinelab\NeoEloquent\Eloquent\Model $related The related model
-     * @param  string $relatedNode The related node' placeholder
-     * @param  string $relationship The relationship title
-     * @param  string $property The parent's property we are matching against
-     * @param  string $value
-     * @param  string $direction Possible values are in, out and in-out
+     * @param \Vinelab\NeoEloquent\Eloquent\Model $parent The parent model of the relationship
+     * @param \Vinelab\NeoEloquent\Eloquent\Model $related The related model
+     * @param string $relatedNode The related node' placeholder
+     * @param string $relationship The relationship title
+     * @param string $property The parent's property we are matching against
+     * @param string $value
+     * @param string $direction Possible values are in, out and in-out
      * @return \Vinelab\NeoEloquent\Query\Builder|static
      */
     public function matchRelation($parent, $related, $relatedNode, $relationship, $property, $value = null, $direction = 'out')
@@ -643,7 +642,7 @@ class Builder extends IlluminateQueryBuilder
      * with a percentile from 0.0 to 1.0.
      * It uses a rounding method, returning the nearest value to the percentile.
      *
-     * @param  string $column
+     * @param string $column
      * @return mixed
      */
     public function percentileDisc($column, $percentile = 0.0)
@@ -657,7 +656,7 @@ class Builder extends IlluminateQueryBuilder
      * calculating a weighted average between two values,
      * if the desired percentile lies between them.
      *
-     * @param  string $column
+     * @param string $column
      * @return mixed
      */
     public function percentileCont($column, $percentile = 0.0)
@@ -668,7 +667,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Retrieve the standard deviation for a given column.
      *
-     * @param  string $column
+     * @param string $column
      * @return mixed
      */
     public function stdev($column)
@@ -679,7 +678,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Retrieve the standard deviation of an entire group for a given column.
      *
-     * @param  string $column
+     * @param string $column
      * @return mixed
      */
     public function stdevp($column)
@@ -690,7 +689,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Get the collected values of the give column.
      *
-     * @param  string $column
+     * @param string $column
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function collect($column)
@@ -709,7 +708,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Get the count of the disctinct values of a given column.
      *
-     * @param  string $column
+     * @param string $column
      * @return int
      */
     public function countDistinct($column)
@@ -720,7 +719,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Execute the query and get the first result.
      *
-     * @param  array $columns
+     * @param array $columns
      * @return mixed|static
      */
     public function first($columns = array('*'))
@@ -733,8 +732,8 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Execute an aggregate function on the database.
      *
-     * @param  string $function
-     * @param  array $columns
+     * @param string $function
+     * @param array $columns
      * @return mixed
      */
     public function aggregate($function, $columns = array('*'), $percentile = null)
@@ -745,8 +744,12 @@ class Builder extends IlluminateQueryBuilder
 
         $previousColumns = $this->columns;
 
+        $this->backupFieldsForCount();
+
         $results = $this->get($columns);
 
+        $this->restoreFieldsForCount();
+        
         // Once we have executed the query, we will reset the aggregate property so
         // that more select queries can be executed against the database without
         // the aggregate value getting in the way when the grammar builds it.
@@ -762,8 +765,8 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Add a binding to the query.
      *
-     * @param  mixed $value
-     * @param  string $type
+     * @param mixed $value
+     * @param string $type
      * @return \Illuminate\Database\Query\Builder
      */
     public function addBinding($value, $type = 'where')
@@ -795,7 +798,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Convert a string into a Neo4j Label.
      *
-     * @param   string $label
+     * @param string $label
      * @return Everyman\Neo4j\Label
      */
     public function makeLabel($label)
@@ -811,7 +814,7 @@ class Builder extends IlluminateQueryBuilder
      * out of User (and other labels).
      * PS: It consideres the first value in $labels
      *
-     * @param  array $labels
+     * @param array $labels
      * @return string
      */
     public function modelAsNode(array $labels = null)
@@ -824,8 +827,8 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Merge an array of where clauses and bindings.
      *
-     * @param  array $wheres
-     * @param  array $bindings
+     * @param array $wheres
+     * @param array $bindings
      * @return void
      */
     public function mergeWheres($wheres, $bindings)
@@ -853,7 +856,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Fromat the value into its string representation.
      *
-     * @param  mixed $value
+     * @param mixed $value
      *
      * @return string
      */
@@ -887,7 +890,7 @@ class Builder extends IlluminateQueryBuilder
     /**
      * Execute the query as a "select" statement.
      *
-     * @param  array $columns
+     * @param array $columns
      * @return \Illuminate\Support\Collection
      */
     public function get($columns = ['*'])
