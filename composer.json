@@ -36,7 +36,8 @@
       "tests/TestCase.php"
     ]
   },
-  "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
   "extra": {
     "laravel": {
       "providers": [
